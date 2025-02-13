@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Special Person</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+        body {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            background-color: #ffcccb;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px gray;
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            font-size: 18px;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            background: red;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background: darkred;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hidden {
+            display: none;
+        }
+        .moving-button {
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="proposal">
+        <h2>Will you be my Valentine? ❤️</h2>
+        <button onclick="goToQuiz()">Yes</button>
+        <button id="no-btn" class="moving-button" onmouseover="moveNoButton()">No</button>
+    </div>
+    
+    <div class="container hidden" id="quiz">
+        <h2>Happy Valentine's Day! ❤️</h2>
+        <p>Solve this to proceed:</p>
+        <p id="question"></p>
+        <input type="number" id="answer" placeholder="Enter your answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="message"></p>
+    </div>
+
+    <div class="container hidden" id="response">
+        <h2>1432 ❤️</h2>
+        <video width="300" autoplay loop>
+            <source src="https://images-ext-1.discordapp.net/external/gCzRqfLkN-MefL7wzjmAYQOtiOCzpBCwNsBJ1fLsQqo/https/media.tenor.com/ZQPdQ8zzG-cAAAPo/kisses.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        function moveNoButton() {
+            let button = document.getElementById("no-btn");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+        
+        function goToQuiz() {
+            document.getElementById("proposal").classList.add("hidden");
+            document.getElementById("quiz").classList.remove("hidden");
+        }
+        
+        function generateQuestion() {
+            let num1 = Math.floor(Math.random() * 100) + 1;
+            let num2 = 143 - num1;
+            document.getElementById("question").innerText = `${num1} + ${num2} = ?`;
+        }
+        
+        function checkAnswer() {
+            let userAnswer = document.getElementById("answer").value;
+            if (userAnswer == "143") {
+                document.getElementById("quiz").classList.add("hidden");
+                document.getElementById("response").classList.remove("hidden");
+            } else {
+                document.getElementById("message").innerText = "Oops! Try Again.";
+            }
+        }
+
+        generateQuestion();
+    </script>
+</body>
+</html>
