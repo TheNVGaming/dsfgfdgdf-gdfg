@@ -56,7 +56,13 @@
     </style>
 </head>
 <body>
-    <div class="container" id="proposal">
+    <div class="container" id="message-box">
+        <h2>Dear Mrigakshi, ❤️</h2>
+        <p>You are the most beautiful and special person in my life. Every moment with you is like a dream, and I can't imagine my world without you. On this special day, I just want to ask...</p>
+        <button onclick="goToProposal()">Next</button>
+    </div>
+    
+    <div class="container hidden" id="proposal">
         <h2>Will you be my Valentine? ❤️</h2>
         <button onclick="goToQuiz()">Yes</button>
         <button id="no-btn" class="moving-button" onmouseover="moveNoButton()">No</button>
@@ -79,6 +85,11 @@
     </div>
 
     <script>
+        function goToProposal() {
+            document.getElementById("message-box").classList.add("hidden");
+            document.getElementById("proposal").classList.remove("hidden");
+        }
+        
         function moveNoButton() {
             let button = document.getElementById("no-btn");
             let x = Math.random() * (window.innerWidth - 100);
