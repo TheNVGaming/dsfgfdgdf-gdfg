@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Special Person</title>
+    <title>For Special One</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
         body {
@@ -64,8 +64,16 @@
     
     <div class="container hidden" id="proposal">
         <h2>Will you be my Valentine? ❤️</h2>
-        <button onclick="goToQuiz()">Yes</button>
+        <button onclick="showGifThenQuiz()">Yes</button>
         <button id="no-btn" class="moving-button" onmouseover="moveNoButton()">No</button>
+    </div>
+
+    <div class="container hidden" id="yes-response">
+        <h2>Yay! You said YES! ❤️</h2>
+        <p>You've made me the happiest person today! Now, let's move forward to a special surprise.</p>
+        <video width="300" autoplay>
+            <source src="https://images-ext-1.discordapp.net/external/906totGXuyY7R97w6xuZcrmofvXAyyDDfj5POX9QM_Q/https/media.tenor.com/M99tJaXsIQAAAAPo/the-office-damn-it.mp4" type="video/mp4">
+        </video>
     </div>
     
     <div class="container hidden" id="quiz">
@@ -98,9 +106,13 @@
             button.style.top = `${y}px`;
         }
         
-        function goToQuiz() {
+        function showGifThenQuiz() {
             document.getElementById("proposal").classList.add("hidden");
-            document.getElementById("quiz").classList.remove("hidden");
+            document.getElementById("yes-response").classList.remove("hidden");
+            setTimeout(() => {
+                document.getElementById("yes-response").classList.add("hidden");
+                document.getElementById("quiz").classList.remove("hidden");
+            }, 5000);
         }
         
         function generateQuestion() {
